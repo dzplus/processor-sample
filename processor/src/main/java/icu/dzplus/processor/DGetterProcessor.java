@@ -1,4 +1,4 @@
-package processor;
+package icu.dzplus.processor;
 
 import com.sun.source.tree.Tree;
 import com.sun.tools.javac.api.JavacTrees;
@@ -18,6 +18,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
+import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,14 +37,37 @@ public class DGetterProcessor extends AbstractProcessor {
     // 提供了创建标识符的方法
     private Names names;
 
+//    @Override
+//    public synchronized void init(ProcessingEnvironment processingEnv) {
+//        super.init(processingEnv);
+//        this.messager = processingEnv.getMessager();
+//        this.trees = JavacTrees.instance(processingEnv);
+//        Context context = ((JavacProcessingEnvironment) processingEnv).getContext();
+//        this.treeMaker = TreeMaker.instance(context);
+//        this.names = Names.instance(context);
+//    }
+
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
+        processingEnv = jbUnwrap(ProcessingEnvironment.class, processingEnv);
+
         super.init(processingEnv);
         this.messager = processingEnv.getMessager();
         this.trees = JavacTrees.instance(processingEnv);
         Context context = ((JavacProcessingEnvironment) processingEnv).getContext();
         this.treeMaker = TreeMaker.instance(context);
         this.names = Names.instance(context);
+    }
+
+    private static <T> T jbUnwrap(Class<? extends T> iface, T wrapper) {
+        T unwrapped = null;
+        try {
+            final Class<?> apiWrappers = wrapper.getClass().getClassLoader().loadClass("org.jetbrains.jps.javac.APIWrappers");
+            final Method unwrapMethod = apiWrappers.getDeclaredMethod("unwrap", Class.class, Object.class);
+            unwrapped = iface.cast(unwrapMethod.invoke(null, iface, wrapper));
+        }
+        catch (Throwable ignored) {}
+        return unwrapped != null? unwrapped : wrapper;
     }
 
     @Override

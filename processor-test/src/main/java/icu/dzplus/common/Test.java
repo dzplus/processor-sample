@@ -1,4 +1,4 @@
-package common;
+package icu.dzplus.common;
 
 import icu.dzplus.annotation.DGetter;
 

@@ -1,4 +1,4 @@
-package icu.dzplus.processor;
+package life.duanzhang.processor;
 
 import com.sun.source.tree.Tree;
 import com.sun.tools.javac.api.JavacTrees;
@@ -8,7 +8,7 @@ import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.TreeMaker;
 import com.sun.tools.javac.tree.TreeTranslator;
 import com.sun.tools.javac.util.*;
-import icu.dzplus.annotation.DGetter;
+import life.duanzhang.annotation.DGetter;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;

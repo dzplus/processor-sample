@@ -1,4 +1,4 @@
-package icu.dzplus;
+package life.duanzhang;
 
 public class Main {
     //编译时需加上 -Djps.track.ap.dependencies=false

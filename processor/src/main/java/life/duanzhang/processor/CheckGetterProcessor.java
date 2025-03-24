@@ -1,6 +1,6 @@
-package icu.dzplus.processor;
+package life.duanzhang.processor;
 
-import icu.dzplus.annotation.Check;
+import life.duanzhang.annotation.Check;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
@@ -17,16 +17,7 @@ import java.util.Set;
 
 
 /**
- * package foo;     // PackageElement
- * <p>
- * class Foo {      // TypeElement
- * int a;           // VariableElement
- * static int b;    // VariableElement
- * Foo () {}        // ExecutableElement
- * void setA (      // ExecutableElement
- * int newA         // VariableElement
- * ) {}
- * }
+ * 检查字段有无Get方法
  */
 @SupportedAnnotationTypes("icu.dzplus.annotation.Check")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)

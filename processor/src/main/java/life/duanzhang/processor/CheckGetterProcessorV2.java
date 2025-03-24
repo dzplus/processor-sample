@@ -1,6 +1,6 @@
-package icu.dzplus.processor;
+package life.duanzhang.processor;
 
-import icu.dzplus.annotation.Check;
+import life.duanzhang.annotation.Check;
 
 import javax.annotation.processing.Completion;
 import javax.annotation.processing.ProcessingEnvironment;
@@ -17,6 +17,7 @@ import java.util.Set;
 
 
 /**
+ * 这个处理器未激活 如果需要激活 到配置文件里打开
  * @author duanzhang
  * @description
  * @time 2023/3/30 14:08
